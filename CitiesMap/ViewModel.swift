@@ -23,7 +23,6 @@ class ViewModel {
     
     init() {
         shownCities = cities ?? []
-        print(self.shownCities[2])
     }
     
     func numberOfRowsInSection() -> Int {
