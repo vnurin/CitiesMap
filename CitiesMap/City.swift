@@ -17,11 +17,6 @@ struct City: Decodable, Comparable {
     static func == (lhs: City, rhs: City) -> Bool {
         return lhs.name == rhs.name && lhs.country == rhs.country
     }
-    
-    let name: String
-    let country: String
-    private let _id: Int
-    let coord: Coord
     static func < (lhs: City, rhs: City) -> Bool {
         if lhs.name != rhs.name {
             return lhs.name < rhs.name
@@ -30,5 +25,8 @@ struct City: Decodable, Comparable {
             return lhs.country < rhs.country
         }
     }
+    let name: String
+    let country: String
+    private let _id: Int
+    let coord: Coord
 }
-

@@ -29,6 +29,7 @@ class CitiesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         splitViewController?.delegate = self
+        tableView.scrollsToTop = true
     }
 
     // MARK: - Table view data source

@@ -22,7 +22,9 @@ class ViewModel {
     var shownCities: [City]
     
     init() {
-        shownCities = cities ?? []
+        shownCities = cities?.sorted {
+            $0 < $1
+        } ?? []
     }
     
     func numberOfRowsInSection() -> Int {

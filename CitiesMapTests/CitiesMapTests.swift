@@ -27,6 +27,28 @@ class CitiesMapTests: XCTestCase {
         }
     }
 
+    func testInitialCitiesAreInAlphabeticalOrder() {
+        var previousCity: City!
+        for city in viewModel.shownCities {
+            if previousCity != nil {
+                XCTAssertLessThan(city, previousCity)
+            }
+            previousCity = city
+        }
+    }
+
+    func testCitiesAreInAlphabeticalOrder() {
+        viewModel.updateShownCities(with: "Lo") {
+            var previousCity: City!
+            for city in self.viewModel.shownCities {
+                if previousCity != nil {
+                    XCTAssertLessThan(city, previousCity)
+                }
+                previousCity = city
+            }
+        }
+    }
+
     func testUpdateShownCitiesPerformance() {
         self.measure {
             viewModel.updateShownCities(with: "La", completion: nil)
