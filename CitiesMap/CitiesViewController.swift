@@ -11,7 +11,7 @@ import CoreLocation
 
 class CitiesViewController: UITableViewController {
 
-    let viewModel = ViewModel()
+    private let viewModel = ViewModel()
     @IBOutlet weak var searchTextField: UITextField! {
         didSet {
             searchTextField.addTarget(self, action: #selector(search), for: .editingChanged)

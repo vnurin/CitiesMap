@@ -10,10 +10,8 @@ import Foundation
 
 class ViewModel {
     //this isn't lazy because it will be required always in the launch time
-    private let cities: [City]? = {
-        guard let jsonPath = Bundle.main.path(forResource: "cities", ofType: "json") else {
-            return nil
-        }
+    private var cities: [City]! = {
+        let jsonPath = Bundle.main.path(forResource: "cities", ofType: "json")!
         let jsonURL = URL(fileURLWithPath: jsonPath)
         let jsonData = try! Data(contentsOf: jsonURL)//this will succeed for sure
         return try? JSONDecoder().decode([City].self, from: jsonData)
@@ -22,9 +20,10 @@ class ViewModel {
     var shownCities: [City]
     
     init() {
-        shownCities = cities?.sorted {
+        cities = cities.sorted {
             $0 < $1
-        } ?? []
+        }
+        shownCities = cities
     }
     
     func numberOfRowsInSection() -> Int {
@@ -38,17 +37,12 @@ class ViewModel {
     func updateShownCities(with prefix: String?, completion: (() -> ())?) {
         DispatchQueue.global(qos: .background).async {
             if let lowercasedSearch = prefix?.lowercased(), !lowercasedSearch.isEmpty {
-                self.shownCities = self.cities?.filter {
+                self.shownCities = self.cities.filter {
                     $0.name.lowercased().hasPrefix(lowercasedSearch)
-                    }
-                    .sorted {
-                        $0 < $1
-                    } ?? []
+                }
             }
             else {
-                self.shownCities = self.cities?.sorted {
-                    $0 < $1
-                    } ?? []
+                self.shownCities = self.cities
             }
             completion?()
         }

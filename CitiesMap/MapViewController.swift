@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
-    let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+    private let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     var coordinate: CLLocationCoordinate2D? {
         didSet {
             mapVIew?.setCenter(coordinate!, animated: true)
