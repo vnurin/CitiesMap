@@ -13,16 +13,19 @@ class MapViewController: UIViewController {
     private let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     var coordinate: CLLocationCoordinate2D? {
         didSet {
-            mapVIew?.setCenter(coordinate!, animated: true)
-            mapVIew?.setRegion(MKCoordinateRegion(center: coordinate!, span: span), animated: true)
+            mapView?.setRegion(MKCoordinateRegion(center: coordinate!, span: span), animated: true)
         }
     }
-    @IBOutlet weak var mapVIew: MKMapView!
+    @IBOutlet weak var mapView: MKMapView! {
+        didSet {
+            mapView.isUserInteractionEnabled = true
+            mapView.showsScale = true
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         if coordinate != nil {
-            mapVIew.setCenter(coordinate!, animated: true)
-            mapVIew.setRegion(MKCoordinateRegion(center: coordinate!, span: span), animated: true)
+            mapView.setRegion(MKCoordinateRegion(center: coordinate!, span: span), animated: true)
         }
     }
 }

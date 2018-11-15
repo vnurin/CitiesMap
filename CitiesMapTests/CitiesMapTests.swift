@@ -23,7 +23,7 @@ class CitiesMapTests: XCTestCase {
     func testUpdateShownCities() {
         viewModel.updateShownCities(with: "Perunov") {
             XCTAssertEqual(self.viewModel.shownCities.count, 1)
-            XCTAssertEqual(self.viewModel.shownCities[0].name, "Perunovo")
+            XCTAssertEqual(self.viewModel.shownCities[0].name, "perunovo")
         }
     }
 
@@ -38,7 +38,7 @@ class CitiesMapTests: XCTestCase {
     }
 
     func testCitiesAreInAlphabeticalOrder() {
-        viewModel.updateShownCities(with: "Lo") {
+        viewModel.updateShownCities(with: "LO") {
             var previousCity: City!
             for city in self.viewModel.shownCities {
                 if previousCity != nil {

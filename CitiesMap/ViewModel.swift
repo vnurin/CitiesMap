@@ -20,9 +20,7 @@ class ViewModel {
     var shownCities: [City]
     
     init() {
-        cities = cities.sorted {
-            $0 < $1
-        }
+        cities = cities.sorted()
         shownCities = cities
     }
     
