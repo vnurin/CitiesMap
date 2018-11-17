@@ -27,6 +27,6 @@ class MapViewController: UIViewController {
         if coordinate != nil {
             mapView.setRegion(MKCoordinateRegion(center: coordinate!, span: span), animated: true)
         }
-    }
+    }    
 }
 

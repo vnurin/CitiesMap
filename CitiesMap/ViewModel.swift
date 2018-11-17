@@ -14,13 +14,13 @@ class ViewModel {
         let jsonPath = Bundle.main.path(forResource: "cities", ofType: "json")!
         let jsonURL = URL(fileURLWithPath: jsonPath)
         let jsonData = try! Data(contentsOf: jsonURL)//this will succeed for sure
-        return try? JSONDecoder().decode([City].self, from: jsonData)
+        return try! JSONDecoder().decode([City].self, from: jsonData)
     }()
     //this isn't computed property for faster processing
     var shownCities: [City]
     
     init() {
-        cities = cities.sorted()
+        cities.sort()
         shownCities = cities
     }
     
