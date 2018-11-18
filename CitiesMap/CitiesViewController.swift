@@ -49,10 +49,10 @@ class CitiesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let mapViewController = splitViewController?.viewControllers.last as? MapViewController {
-            mapViewController.coordinate = CLLocationCoordinate2D(latitude: viewModel.shownCities[tableView.indexPathForSelectedRow!.row].coord.lat, longitude: viewModel.shownCities[tableView.indexPathForSelectedRow!.row].coord.lon)
+            mapViewController.coordinate = CLLocationCoordinate2D(latitude: viewModel.shownCities[indexPath.row].coord.lat, longitude: viewModel.shownCities[indexPath.row].coord.lon)
         }
         else {
-            performSegue(withIdentifier: "Show Map", sender: tableView.cellForRow(at: indexPath))
+            performSegue(withIdentifier: "Show Map", sender: viewModel.shownCities[indexPath.row].coord)
         }
     }
 
@@ -61,8 +61,8 @@ class CitiesViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Show Map" {
-            if let mapViewController = segue.destination as? MapViewController {
-                mapViewController.coordinate = CLLocationCoordinate2D(latitude: viewModel.shownCities[tableView.indexPathForSelectedRow!.row].coord.lat, longitude: viewModel.shownCities[tableView.indexPathForSelectedRow!.row].coord.lon)
+            if let mapViewController = segue.destination as? MapViewController, let coord = sender as? Coord {
+                mapViewController.coordinate = CLLocationCoordinate2D(latitude: coord.lat, longitude: coord.lon)
             }
         }
     }
